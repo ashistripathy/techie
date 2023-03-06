@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.List;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     private static final Logger log = LoggerFactory.getLogger(EmployeeServiceImpl.class);
@@ -19,5 +21,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     public String createEmployee(EmployeeDTO newEmp) throws ParseException {
         //log.info("inside impl");
         return employeeDAO.createEmployee(newEmp);
+    }
+    public List<EmployeeDTO> getEmployeeList() throws ParseException{
+        return employeeDAO.getEmployeeLists();
     }
 }

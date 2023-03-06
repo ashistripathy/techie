@@ -14,6 +14,9 @@ public class EmployeeDTO implements Serializable {
     private Integer comm;
     private Integer deptno;
 
+    public EmployeeDTO() {
+    }
+
     public EmployeeDTO(Integer empno, String ename, String job, Integer mgr, Date hiredate, Integer sal, Integer comm, Integer deptno) {
         this.empno = empno;
         this.ename = ename;
@@ -87,5 +90,19 @@ public class EmployeeDTO implements Serializable {
 
     public void setDeptno(Integer deptno) {
         this.deptno = deptno;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeDTO{" +
+                "empno=" + empno +
+                ", ename='" + ename + '\'' +
+                ", job='" + job + '\'' +
+                ", mgr=" + mgr +
+                ", hiredate=" + hiredate +
+                ", sal=" + sal +
+                ", comm=" + comm +
+                ", deptno=" + deptno +
+                '}';
     }
 }

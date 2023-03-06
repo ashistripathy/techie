@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,6 +27,7 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
     ServletContext context;
+    /*Create Employee*/
     @RequestMapping(value = "/createEmployee",method = RequestMethod.POST,consumes = "application/json",produces = "application/json")
     public @ResponseBody ResponseEntity<Map<String,String>> createEmployee(HttpServletRequest request, @RequestBody EmployeeDTO newEmployee) throws SQLException{
         //log.info("input json : "+ newEmployee.toString());
@@ -38,5 +40,18 @@ public class EmployeeController {
         Map<String,String> result = new HashMap<>();
         result.put("result",resultMessage);
         return new ResponseEntity<Map<String,String>>(result,HttpStatus.OK );
+    }
+    /*Get Employee*/
+    @RequestMapping(value = "/getEmployee", method = RequestMethod.GET,produces = "application/json")
+    public List<EmployeeDTO> getEmployeeList() throws SQLException{
+        log.info("Employee List controller");
+
+        List<EmployeeDTO> result = null;
+        try{
+            result = employeeService.getEmployeeList();
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }
