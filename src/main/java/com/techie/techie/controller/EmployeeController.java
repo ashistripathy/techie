@@ -54,4 +54,17 @@ public class EmployeeController {
         }
         return result;
     }
+    /*Get Employee by id */
+    @RequestMapping(value = "/employee/{empno}",method = RequestMethod.GET, produces = "application/json")
+    public EmployeeDTO getEmployeeById(@RequestParam int empno ) throws SQLException {
+        log.info("Emp ID : " + empno);
+
+        EmployeeDTO result = null;
+        try {
+            result = employeeService.getEmployeeById(empno);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

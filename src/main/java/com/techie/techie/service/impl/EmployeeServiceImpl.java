@@ -25,4 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<EmployeeDTO> getEmployeeList() throws ParseException{
         return employeeDAO.getEmployeeLists();
     }
+    public EmployeeDTO getEmployeeById(int empno) throws ParseException{
+        return employeeDAO.getEmployeeById(empno);
+    }
 }

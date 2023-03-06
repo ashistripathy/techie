@@ -9,4 +9,6 @@ public interface EmployeeService {
     String createEmployee(EmployeeDTO newEmp) throws ParseException;
 
     List<EmployeeDTO> getEmployeeList() throws ParseException;
+
+    EmployeeDTO getEmployeeById(int empno) throws ParseException;
 }

@@ -59,8 +59,17 @@ public class EmployeeDAO {
         }
         return result;
     }
+    public EmployeeDTO getEmployeeById(int empno) {
+        String getEmployeeByID = env.getProperty("query.getEmployeeById");
+        EmployeeDTO result = new EmployeeDTO();
+        try{
+            MapSqlParameterSource sqlParameterSource = new MapSqlParameterSource();
 
-    private void updateEmployeeObject(List<EmployeeDTO> result) {
-
+            result = jdbcTemplate.queryForObject(getEmployeeByID,new Object [] {empno},
+                    new BeanPropertyRowMapper<EmployeeDTO>(EmployeeDTO.class));
+        }catch(Exception exp){
+            log.info("Exception while getting employee : " + exp.toString());
+        }
+        return result;
     }
 }
