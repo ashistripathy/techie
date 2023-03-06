@@ -11,4 +11,6 @@ public interface EmployeeService {
     List<EmployeeDTO> getEmployeeList() throws ParseException;
 
     EmployeeDTO getEmployeeById(int empno) throws ParseException;
+
+    String updateEmployee(EmployeeDTO employeeDTO);
 }

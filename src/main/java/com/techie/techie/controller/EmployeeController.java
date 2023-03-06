@@ -67,4 +67,19 @@ public class EmployeeController {
         }
         return result;
     }
+    /*Update Employee*/
+    @RequestMapping(value = "/updateEmployee",method = RequestMethod.PUT,consumes = "application/json")
+    public @ResponseBody ResponseEntity<Map<String,String>> updateEmployee(@RequestBody final EmployeeDTO empDTO){
+        log.info("empno : "+empDTO.toString());
+        String resultMessage = null;
+
+        try{
+            resultMessage = employeeService.updateEmployee(empDTO);
+        }catch(Exception e){
+            log.error("Exception in updateEmployee"+e.getMessage());
+        }
+        Map<String,String> result = new HashMap<String,String>();
+        result.put("result",resultMessage);
+        return new ResponseEntity<Map<String, String>>(result,HttpStatus.OK);
+    }
 }

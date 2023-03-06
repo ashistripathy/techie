@@ -72,4 +72,21 @@ public class EmployeeDAO {
         }
         return result;
     }
+
+    public String updateEmployee(EmployeeDTO employeeDTO) {
+        String updateEmployee = env.getProperty("query.updateEmployee");
+        String output = null;
+        try{
+            int status = jdbcTemplate.update(updateEmployee,employeeDTO.getEmpno(),employeeDTO.getEname(),employeeDTO.getDeptno(),employeeDTO.getComm(),employeeDTO.getSal()
+                    ,employeeDTO.getMgr(),employeeDTO.getJob());
+            if(status != 0){
+                output = employeeDTO.getEname() + " updated successfully";
+            }else{
+                output = "Could not change "+employeeDTO.getEname();
+            }
+        }catch (Exception e){
+            log.info("Exception while updating employee : " + e.getMessage());
+        }
+        return output;
+    }
 }
